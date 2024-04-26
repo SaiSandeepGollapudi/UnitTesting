@@ -3,6 +3,8 @@ package com.luv2code.junitdemo;
 import com.luv2code.junitdemo.DemoUtils;
 import org.junit.jupiter.api.*;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 // @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class) Replaces underscores in test method name with spaces
@@ -43,8 +45,8 @@ class DemoUtilsTest {
 
         String str = "luv2code";
 
-        assertSame(demoUtils.getAcademy(), demoUtils.getAcademyDuplicate(), "Objects should refer to same object");
-        assertNotSame(str, demoUtils.getAcademy(), "Objects should not refer to same object");
+        assertSame(demoUtils.getAcademy(), demoUtils.getAcademyDuplicate(), "Objects should refer to same object");//Assert that items refer to same object
+        assertNotSame(str, demoUtils.getAcademy(), "Objects should not refer to same object");//Assert that items do not refer to same object
     }
 
     @DisplayName("True and False")
@@ -53,8 +55,31 @@ class DemoUtilsTest {
         int gradeOne = 10;
         int gradeTwo = 5;
 
-        assertTrue(demoUtils.isGreater(gradeOne, gradeTwo), "This should return true");
-        assertFalse(demoUtils.isGreater(gradeTwo, gradeOne), "This should return false");
+        assertTrue(demoUtils.isGreater(gradeOne, gradeTwo), "This should return true");//Assert that condition is true
+        assertFalse(demoUtils.isGreater(gradeTwo, gradeOne), "This should return false");//Assert that condition is false
+
+    }
+        @DisplayName("Array Equals")
+                @Test
+        void testArrayEquals(){
+            String[] stringArray = {"A","B","C"};
+            assertArrayEquals(stringArray, demoUtils.getFirstThreeLettersOfAlphabet(), "Arrays should be equal");
+          //  assertArrayEquals Assert that both object arrays are deeply equal
+        }
+
+        @DisplayName("Iterable equals")
+    @Test
+    void testIterableEquals(){
+            List<String> theList = List.of("luv","2","code");//assertIterableEquals Assert that both object iterables are deeply equal
+assertIterableEquals(theList, demoUtils.getAcademyInList(),"Expected list should be same as actual list");
+//iterable is an instance of a class that implements the java.lang.Iterable interface Examples: ArrayList, LinkedList, HashSet, TreeSet
+        }
+    @DisplayName("Lines Match")
+    @Test
+    void testLinesMatch(){
+        List<String> theList = List.of("luv","2","code");//assertIterableEquals Assert that both object iterables are deeply equal
+        assertLinesMatch(theList, demoUtils.getAcademyInList(),"Lines should Match");
+//iterable is an instance of a class that implements the java.lang.Iterable interface Examples: ArrayList, LinkedList, HashSet, TreeSe
 
     }
 
